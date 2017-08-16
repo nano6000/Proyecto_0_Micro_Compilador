@@ -1,4 +1,5 @@
-
+#include <Semantic_routines.h>
+#include <Scanner.h>
 
 void system_goal (void)
 {
@@ -81,19 +82,29 @@ void id_list (void)
 	}
 }
 
-void expression(void)
+void expression(expr_rec *result)
 {
-	token t;
 	/*
 	* <expression> ::= <primary>
 	* 					{ <add op> <primary> }
+	
+		primary();
+		for (t = next_token(); t == PLUSOP || t == MINUSOP; t = next_token()) 
+		{
+			add_op();
+			primary () ;
+		}
 	*/
-	primary();
-	for (t = next_token(); t == PLUSOP || t == MINUSOP; t = next_token()) 
-	{
-		add_op();
-		primary ();
+	expr_rec left_operand, right_operand;
+	op_rec op;
+	primary(& left_operand); 
+	while (next_token() == PLUSOP || next_token() == MINUSOP) 
+	{ 
+		add_op(& op); 
+		primary(& right_operand); 
+		left_operand = gen_infix(left_operand, op, right_operand);
 	}
+	*result = left_operand;
 }
 
 void expr_list(void)

@@ -1,15 +1,8 @@
 #include <stdio.h>
 /* character classification macros */
 #include <ctype.h>
-extern char token_buffer[];
 
-typedef enum token_types {
-		BEGIN, END, READ, WRITE, ID, INTLITERAL,
-		LPAREN, RPAREN, SEMICOLON, COMMA, ASSIGNOP,
-		PLUSOP, MINUSOP, SCANEOF 
-	} token;
-	
-extern token scanner(void);
+extern char token_buffer[];
 
 token scanner(void) {
 	int in_char, c;
