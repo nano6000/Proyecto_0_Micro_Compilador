@@ -1,3 +1,43 @@
+#ifndef STDIO
+#define STDIO
+
+#include <stdio.h>
+#include <string.h>
+#include "Scanner.h"
+
+#endif
+
+#include "Semantic_routines.h"
+
+
+/*
+
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+	DESCOMENTAR FUNCION GENERATE!!!
+*/
+
+
 /* Is s in the symbol table? */ 
 extern int lookup(string s);
 
@@ -8,10 +48,10 @@ extern void enter(string s);
 
 void check_id(string s)
 {
-	if (! lookup(s)) 
+	if (!lookup(s)) 
 	{ 
 		enter(s);
-		generate("Declare", s, "Integer")
+		//generate("Declare", s, "Integer");
 	}
 }
 
@@ -36,13 +76,13 @@ void start(void)
 void finish(void)
 {
 	/* Generate code to finish program. */ 
-	generate("Halt", "", "", "");
+	//generate("Halt", "", "", "");
 }
 
 void assign(expr_rec target, expr_rec source)
 {
 	/* Generate code for assignment. */ 
-	generate("Store", extract(source), target.name, "");
+	//generate("Store", extract(source), target.name, "");
 }
 
 op_rec process_op(void)
@@ -67,14 +107,14 @@ expr_rec gen_infix(expr_rec e1, op_rec op, expr_rec e2)
 		* for result.
 	*/
 	strcpy(e_rec.name, get_temp()); /* Temporal. Necesario en x86? */
-	generate(extract(op), extract(e1), extract(e2), e_rec.name); 
+	//generate(extract(op), extract(e1), extract(e2), e_rec.name); 
 	return e_rec ;
 }
 
 void read_id(expr_rec in_var)
 {
 	/* Generate code for read. */ 
-	generate("Read", in_var.name, "Integer", "");
+	//generate("Read", in_var.name, "Integer", "");
 }
 
 expr_rec process__id (void)
@@ -92,7 +132,7 @@ expr_rec process__id (void)
 
 expr_rec process_literal(void)
 {
-	expr__rec t;
+	expr_rec t;
 	/*
 		* Convert literal to a numeric representation
 		* and build semantic record.
@@ -104,7 +144,7 @@ expr_rec process_literal(void)
 
 void write_expr (expr_rec out_expr)
 {
-	generate("Write", extract(out_expr), "Integer", "");
+	//generate("Write", extract(out_expr), "Integer", "");
 }
 
 

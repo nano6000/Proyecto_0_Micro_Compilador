@@ -1,5 +1,6 @@
-#include <Semantic_routines.h>
-#include <Scanner.h>
+#include "Semantic_routines.c"
+#include "Scanner.c"
+
 
 void system_goal (void)
 {

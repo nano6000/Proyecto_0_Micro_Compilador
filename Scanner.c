@@ -4,7 +4,9 @@
 
 extern char token_buffer[];
 
-token scanner(void) {
+
+token scanner(void) 
+{
 	int in_char, c;
 	clear_buffer();
 	
@@ -28,7 +30,7 @@ token scanner(void) {
 			ungetc(c, stdin); 
 			return check_reserved();
 		}
-		else if (isdigit(in char)) 
+		else if (isdigit(in_char)) 
 		{
 			/*
 			* INTLITERAL ::= DIGIT |
@@ -62,11 +64,11 @@ token scanner(void) {
 				lexical_error(in_char);
 			}
 		}
-		else if {in_char == ')' 
+		else if (in_char == ')' )
 		{
 			/* is it —, comment start */ 
 			c = getchar(); 
-			if (C == '-') 
+			if (c == '-') 
 			{
 				do
 				in_char = getchar(); 

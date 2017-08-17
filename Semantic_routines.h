@@ -1,6 +1,6 @@
 #define MAXIDLEN 33
 
-typedaf char string[MAXIDLEN];
+typedef char string[MAXIDLEN];
 
 typedef struct operator 
 { 
@@ -21,6 +21,9 @@ typedef struct expression
 		int val; /* for LITERALEXPR */
 	};
 } expr_rec;
+
+
+extern token current_token;
 
 /* Is s in the symbol table? */ 
 extern int lookup(string s);
