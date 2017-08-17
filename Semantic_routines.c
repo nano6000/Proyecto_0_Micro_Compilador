@@ -44,6 +44,7 @@ extern int lookup(string s);
 /* Put s unconditionally into symbol table. */
 extern void enter(string s);
 
+token current_token;
 
 
 void check_id(string s)

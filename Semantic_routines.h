@@ -1,5 +1,7 @@
 #define MAXIDLEN 33
 
+
+
 typedef char string[MAXIDLEN];
 
 typedef struct operator 
