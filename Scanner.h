@@ -11,3 +11,7 @@ extern char token_buffer[];
 void clear_buffer();
 
 void buffer_char (char c); 
+
+token check_reserved();
+
+void lexical_error(int c);

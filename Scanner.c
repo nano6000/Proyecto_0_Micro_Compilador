@@ -1,9 +1,16 @@
-#include <stdio.h>
+
 /* character classification macros */
 #include <ctype.h>
-#include <stdlib.h>
 
-char token_buffer[];
+#ifndef STDIO
+#define STDIO
+
+#include <stdio.h>
+
+
+#endif
+
+char token_buffer[300];
 
 
 token scanner(void) 
@@ -11,7 +18,7 @@ token scanner(void)
 	int in_char, c;
 	clear_buffer();
 
-	calloc(20, sizeof(char));
+	
 
 	
 	if (feof(stdin))
@@ -101,5 +108,10 @@ void buffer_char (char c) {
 //Frees the memory assigned to token_buffer
 void clear_buffer() {
 	free (token_buffer);
+	calloc(20, sizeof(char));
 }
 
+
+void lexical_error(int c){
+	printf("Lexical error: Char \"%d\" not recognized");
+}

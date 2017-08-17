@@ -1,5 +1,7 @@
-#include <Semantic_routines.h>
-#include <Scanner.h>
+#include "Semantic_routines.h"
+#include "Scanner.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void system_goal (void)
 {
@@ -22,7 +24,7 @@ void statement_list(void)
 	* <statement list> ::= <statement> { <statement> }
 	*/
 	statement(); 
-	while (TRUE) 
+	while (true) 
 	{
 		switch (next_token()) 
 		{ 
@@ -40,6 +42,8 @@ void statement_list(void)
 void statement(void)
 {
 	token tok = next_token();
+	expr_rec source,target;
+
 	switch (tok) 
 	{
 		case ID:
@@ -150,4 +154,8 @@ void primary(void)
 		default:
 			syntax_error(tok); break;
 	}
+}
+
+void syntax_error (token t){
+	printf("%s", "A micro syntax error has been sighted");
 }
