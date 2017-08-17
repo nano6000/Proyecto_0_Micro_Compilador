@@ -1,5 +1,5 @@
-#include "Semantic_routines.h"
 #include "Scanner.h"
+#include "Semantic_routines.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -26,7 +26,7 @@ void statement_list(void)
 	* <statement list> ::= <statement> { <statement> }
 	*/
 	statement(); 
-	while (true) 
+	while (1) 
 	{
 		switch (next_token()) 
 		{ 
@@ -52,7 +52,7 @@ void statement(void)
 			/* <statement> ::= ID := <expression> ; */ 
 			match(ID); 
 			match(ASSIGNOP);
-			expression();
+			expression(&source);
 			match(SEMICOLON); 
 			break;
 		case READ:
@@ -116,11 +116,12 @@ void expression(expr_rec *result)
 void expr_list(void)
 {
 	/* <expr list> ::= <expression> { , <expression> } */ 
-	expression();
+	expr_rec rec;
+	expression(&rec);
 	while (next_token() == COMMA) 
 	{ 
 		match(COMMA); 
-		expression();
+		expression(&rec);
 	}
 }
 
@@ -134,7 +135,7 @@ void add_op(void)
 		syntax_error(tok);
 }
 
-void primary(void)
+void primary(expr_rec *exp)
 {
 	token tok = next_token();
 	switch (tok) 
@@ -142,7 +143,7 @@ void primary(void)
 		case LPAREN:
 			/* <primary> ::= ( <expression> ) */ 
 			match(LPAREN); 
-			expression(); 
+			expression(&exp); 
 			match(RPAREN); 
 			break;
 		case ID:
