@@ -9,7 +9,7 @@
 
 #include "Semantic_routines.h"
 
-
+token current_token;
 /*
 
 	DESCOMENTAR FUNCION GENERATE!!!

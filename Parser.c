@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+extern token current_token;
+
 void system_goal (void)
 {
 	/* <system goal> ::= <program> SCANEOF */ 
@@ -158,4 +160,19 @@ void primary(void)
 
 void syntax_error (token t){
 	printf("%s", "A micro syntax error has been sighted");
+}
+
+void match(token t)
+{
+	token temp_token = scanner();
+	if (temp_token == t)
+	{
+		current_token = t;
+		return;
+	}
+	else
+	{
+		syntax_error(t);
+		return;
+	}
 }
