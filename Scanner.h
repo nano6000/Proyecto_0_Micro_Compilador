@@ -5,3 +5,9 @@ typedef enum token_types {
 	} token;
 	
 extern token scanner(void);
+
+extern char token_buffer[];
+
+void clear_buffer();
+
+void buffer_char (char c); 

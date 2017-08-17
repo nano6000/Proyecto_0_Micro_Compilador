@@ -1,19 +1,23 @@
 #include <stdio.h>
 /* character classification macros */
 #include <ctype.h>
+#include <stdlib.h>
 
-extern char token_buffer[];
+char token_buffer[];
 
 
 token scanner(void) 
 {
 	int in_char, c;
 	clear_buffer();
+
+	calloc(20, sizeof(char));
+
 	
 	if (feof(stdin))
 		return SCANEOF;
 	
-	while ((in_char = getchar()) ! = EOF) 
+	while ((in_char = getchar()) != EOF) 
 	{ 
 		if (isspace(in_char))
 			continue; /* do nothing */ 
@@ -60,7 +64,7 @@ token scanner(void)
 				return ASSIGNOP; 
 			else 
 			{
-				ungect(c, stdin); 
+				ungetc(c, stdin); 
 				lexical_error(in_char);
 			}
 		}
@@ -84,3 +88,18 @@ token scanner(void)
 			lexical_error(in_char);
 	}
 }
+
+
+//Adds a char to the token lists
+void buffer_char (char c) {
+	int pos;
+	for (pos = 0; token_buffer[pos] != 0; pos++);
+	token_buffer[pos] = c;
+}
+
+
+//Frees the memory assigned to token_buffer
+void clear_buffer() {
+	free (token_buffer);
+}
+
